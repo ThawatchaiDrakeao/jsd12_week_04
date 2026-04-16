@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Little Meow Football Field - สนามฟุตบอลสำหรับคนรักแมว</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- 1. Reset & Utilities --- */
+      :root {
+        --bg-main: #0f021b;
+        --card-bg: #1e0a33;
+        --primary: #8b3dff;
+        --secondary: #00f2ff; /* สีฟ้า Neon ตัดกับม่วง */
+        --text-main: #ffffff;
+        --text-dim: #b3a1c9;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Prompt", sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Utilites */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(45deg, var(--primary), #5e17eb);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(139, 61, 255, 0.4);
+      }
+
+      /* * --- Component: Logo Avatar (Senior Best Practice) --- 
+       * วิธีนี้ใช้ CSS เพื่อรักษาสัดส่วนรูป (object-fit) 
+       * และกำหนดกรอบวงกลมอย่างมีประสิทธิภาพ
+       */
+      
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 15px; /* เว้นระยะระหว่างรูปกับชื่อ */
+        text-decoration: none; /* หากทำเป็น Link */
+      }
+
+      .logo-avatar {
+        width: 60px;          /* ขนาดกรอบวงกลม */
+        height: 60px;         /* ต้องเท่ากับ width */
+        border-radius: 50%;   /* ทำเป็นวงกลม */
+        overflow: hidden;     /* ตัดส่วนของรูปที่ล้น */
+        display: flex;        /* จัดให้รูปอยู่ตรงกลาง */
+        justify-content: center;
+        align-items: center;
+        background-color: var(--card-bg); /* Placeholder background */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* ใส่ Shadow เล็กน้อย */
+        transition: var(--transition);
+      }
+      
+      .logo-avatar:hover {
+        transform: scale(1.05); /* Effect เมื่อ Hover */
+      }
+
+      .logo-avatar img {
+        width: 100%;          /* ขยายรูปเต็มกรอบ */
+        height: 100%;         /* ขยายรูปเต็มกรอบ */
+        object-fit: cover;    /* รักษาสัดส่วนรูปภาพต้นฉบับและขยายให้เต็มพื้นที่ โดยไม่บีบรูป */
+        object-position: center; /* จัดจุดโฟกัสรูปที่จุดกึ่งกลาง */
+      }
+
+      .logo-text {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--secondary);
+      }
+
+      /* --- 3. Header & Hero --- */
+      header {
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .hero {
+        padding: 100px 0;
+        text-align: center;
+        background: radial-gradient(
+          circle at center,
+          #2d114d 0%,
+          var(--bg-main) 70%
+        );
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        background: linear-gradient(to right, #fff, var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--text-dim);
+        margin-bottom: 30px;
+      }
+
+      /* --- 4. Features --- */
+      .features {
+        padding: 80px 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .card {
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        text-align: center;
+        transition: var(--transition);
+      }
+
+      .card:hover {
+        border-color: var(--primary);
+        transform: scale(1.05);
+      }
+
+      .card i {
+        font-size: 3rem;
+        color: var(--secondary);
+        margin-bottom: 20px;
+      }
+
+      /* --- 5. Pricing --- */
+      .pricing {
+        padding: 80px 0;
+        text-align: center;
+      }
+
+      .price-grid {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .price-item {
+        background: #250d41;
+        padding: 30px;
+        border-radius: 15px;
+        width: 300px;
+      }
+
+      .price-item h3 {
+        color: var(--secondary);
+        margin-bottom: 15px;
+      }
+      .price-item .cost {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .logo-text {
+          font-size: 1.4rem;
+        }
+        .logo-avatar {
+          width: 45px;
+          height: 45px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="/" class="logo">
+          <div class="logo-avatar">
+            <img 
+              src="/IMG_3198.JPG" 
+              alt="Little Meow Avatar Logo" 
+            />
+          </div>
+          <span class="logo-text">Little Meow</span>
+        </a>
+        <nav>
+          <a href="#booking" class="btn btn-primary">จองสนามเลย</a>
+        </nav>
+      </header>
+    </div>
+
+    <section class="hero">
+      <div class="container">
+        <h1 id="lmff">Little Meow Football Field</h1>
+        <p>
+          สัมผัสประสบการณ์การเล่นฟุตบอลบนหญ้าเทียมระดับพรีเมียม
+          <br />พร้อมบรรยากาศสุดเป็นกันเองสำหรับคนรักแมว
+        </p>
+        <div class="hero-btns">
+          <a href="#price" class="btn btn-primary">ดูราคาและโปรโมชั่น</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="features">
+        <div class="card">
+          <i class="fas fa-shield-halved"></i>
+          <h3>สนามมาตรฐาน</h3>
+          <p>หญ้าเทียมเกรดนำเข้า นุ่ม ถนอมข้อเท้า ลดการบาดเจ็บ</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-lightbulb"></i>
+          <h3>ไฟส่องสว่าง LED</h3>
+          <p>สว่างทั่วถึงทั้งสนามมาตรฐานการแข่งขันระดับมืออาชีพ</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-mug-hot"></i>
+          <h3>Meow Cafe</h3>
+          <p>มีโซนพักผ่อนพร้อมเครื่องดื่ม และน้องแมวคอยต้อนรับ</p>
+        </div>
+      </section>
+
+      <section id="price" class="pricing">
+        <h2>อัตราค่าเช่าสนาม</h2>
+        <div class="price-grid">
+          <div class="price-item">
+            <h3>Day Time</h3>
+            <p>08:00 - 16:00</p>
+            <div class="cost">600.- / ชม.</div>
+            <p>ฟรีน้ำดื่ม 2 ขวด</p>
+          </div>
+          <div class="price-item" style="border: 2px solid var(--primary)">
+            <h3>Prime Time</h3>
+            <p>16:00 - 00:00</p>
+            <div class="cost">1,000.- / ชม.</div>
+            <p>แถมคูปองเครื่องดื่ม Cafe</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer
+      style="
+        text-align: center;
+        padding: 40px 0;
+        color: var(--text-dim);
+        border-top: 1px solid #2d114d;
+      "
+    >
+      <p>&copy; 2026 Little Meow Football Field. All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>

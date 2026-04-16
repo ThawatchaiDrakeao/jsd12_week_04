@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS: Exercise_02</title>
+  </head>
+
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #fff;
+      }
+
+      .card {
+        font-family: "Inter", sans-serif;
+        max-width: 400px;
+        width: 100%;
+        padding: 40px;
+        border: 1px solid #000;
+        background-color: #f5f5f5;
+
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .card__title {
+        color: #001f3f;
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      .card__subtitle {
+        font-size: 16px;
+        color: #333;
+        line-height: 1.5;
+      }
+
+      .card__stat {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .stat-box {
+        background-color: #2ecc71;
+        color: #001f3f;
+        display: inline-block;
+        padding: 10px 25px;
+        border-radius: 20px;
+        font-size: 48px;
+        font-weight: bold;
+        align-self: flex-start;
+      }
+
+      .stat-box__description {
+        font-size: 14px;
+        color: #333;
+        line-height: 1.5;
+        font-weight: bold;
+      }
+    </style>
+
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">Depth</h2>
+      </div>
+
+      <div class="card__body">
+        <p class="card__subtitle">
+          Our employment and income outcomes within 3 and 6 months of program
+          completion
+        </p>
+      </div>
+
+      <div class="card__stat">
+        <div class="stat-box">82%</div>
+        <p class="stat-box__description">
+          of graduates placed in jobs within six months of program completion
+          (73% at three months)
+        </p>
+      </div>
+
+      <div class="card__stat">
+        <div class="stat-box">$1.5 billion</div>
+        <p class="stat-box__description">
+          in cumulative wages earned by graduates since 2015
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
+/*complet*/
